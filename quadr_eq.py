@@ -1,5 +1,5 @@
-import math.sqrt
-import cmath.sqrt
+import math
+import cmath
 
 def viet(b,c):
     d = b**2 - 4*c
@@ -22,3 +22,5 @@ def tailor(b,c):
     else:
         x1,x2 = viet (b,c)
     return x1, x2 
+
+print(viet(2,0))
