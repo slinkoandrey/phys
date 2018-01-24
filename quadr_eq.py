@@ -17,10 +17,11 @@ def viet(b,c):
 def tailor(b,c):
     a = 4*c/b**2
     if a**2  < 10**-25:
-        x1 = - 1.0 * c / b
+        x1 = - 1.0 * c / b + 2 * c / b ** 3
         x2 = -b * 1.0
     else:
         x1,x2 = viet (b,c)
     return x1, x2 
 
-print(viet(2,0))
+print(viet(2,1))
+print(tailor(2,1))
