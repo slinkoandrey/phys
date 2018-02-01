@@ -1,7 +1,7 @@
 def fi():
     lst = [1,2]
-    while lst[­1] < 40000:
-        lst = lst + [lst[­1] + lst[­2]]
+    while lst[-1] < 4000000:
+        lst += [lst[-1] + lst[-2]]
     chet = [x for x in lst if x%2 == 0]
     x2 = [x**2 for x in chet]
     x3 = [x**3 for x in chet]
