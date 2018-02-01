@@ -1,43 +1,43 @@
 def arab_to_rim(s):
     rim = ''
     while s >= 1000:
-        rim = rim + 'M'
+        rim += 'M'
         s = s - 1000
     if s >= 900:
-        rim = rim + 'CM'
+        rim += 'CM'
         s = s - 900
     if s >= 500:
-        rim = rim + 'D'
+        rim += 'D'
         s = s - 500
     if s >= 400:
-        rim = rim + 'CD'
+        rim += 'CD'
         s = s - 400
     while s >= 100:
-        rim = rim + 'C'
+        rim += 'C'
         s = s - 100
     if s >= 90:
-        rim = rim + 'XC'
+        rim += 'XC'
         s = s - 90
     if s >= 50:
-        rim = rim + 'L'
+        rim += 'L'
         s = s - 50
     if s >= 40:
-        rim = rim + 'XL'
+        rim += 'XL'
         s = s - 40
     while s >= 10:
-        rim = rim + 'X'
+        rim += 'X'
         s = s - 10
     if s >= 9:
-        rim = rim + 'IX'
+        rim += 'IX'
         s = s - 9
     if s >= 5:
-        rim = rim + 'V'
+        rim += 'V'
         s = s - 5
     if s >= 4:
-        rim = rim + 'IV'
+        rim += 'IV'
         s = s - 4
     while s > 0:
-        rim = rim + 'I'
+        rim += 'I'
         s = s - 1
     return rim
     
