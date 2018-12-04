@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from collections import namedtuple
 from scipy.optimize import minimize_scalar
 
@@ -49,12 +50,28 @@ def build_tree(x, y, depth = 1, max_depth = np.inf):
     root = Node(feature, value, impurity, left, right)
     return root
 
+def predict(tree, x):
+    y = np.empty(x.shape[0])
+    for i, row in enumerate(x):
+        node = tree
+        while isinstance(node, Node):
+            if row[node.feature] >= node.value:
+                node = node.right
+            else:
+                node = node.left
+        y[i] = node.value
+    return y
+
 def main():
     n = 100
     x = np.random.normal(-1, 1, size = (n,2)) 
     y = np.asarray(x[:,0] > 0, dtype=int)
     tree = build_tree(x, y)
-    print(tree.right)
+    COLORS = np.array([[1.,0.,0.],[0.,0.,1.]])
+    plt.scatter(*x.T, color = COLORS[y], s=10)
+    x_test = np.random.normal(-1, 1, size = (n,2)) 
+    y_pred = predict(tree, x_test).astype(np.int)
+    plt.scatter(*x_test.T, color = COLORS[y_pred], marker = 'v', s=50)
 
 if __name__ == '__main__':
     main()
