@@ -1,7 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from collection import namedtuple
-
+from scipy.optimize import minimize_scalar
 
 Node = namedtuple ('Node', ('feature', 'value', 'impurity', 'left', 'right'))
 Leaf = namedtuple ('Leaf', ('value', 'x', 'y'))
@@ -16,8 +16,18 @@ def build_tree(x, y, depth, max_depth = np.inf):
     root = Node((feature, value, impurity, left, right))
     return root
 
+def partition(x, y, feature, value):
+    i_right = x[:, feature] >= value
+    i_left = np.logical_not(i_right)
+    return (x[i_left], y[i_left]), (x[i_right], y[i_right])
+
 def find_best_split(x, y):
-    
+    best_feature, best_value, best_impurity = 0, x[0,0], np.inf
+    for i in range(x.shape[1]):
+        value = 
+        impurity = 
+        if impurity < best_impurity:
+            best_feature, best_value, best_impurity = feature, value, impurity
     return best_feature, best_value, best_impurity
 
 def criteria(y):
