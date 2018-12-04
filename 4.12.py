@@ -22,10 +22,20 @@ def partition(x, y, feature, value):
     return (x[i_left], y[i_left]), (x[i_right], y[i_right])
 
 def find_best_split(x, y):
+    def f(value, feature, x, y):
+        (_, y_left), (_, y_right) = partition(x, y, feature, value)
+        return impurity(y_left, y_right)    
     best_feature, best_value, best_impurity = 0, x[0,0], np.inf
-    for i in range(x.shape[1]):
-        value = 
-        impurity = 
+    for feature in range(x.shape[1]):
+        x_i_sorted = np.sort(x[:, feature])
+        result = minimize_scalar(
+                f,
+                args = (feature, x, y),
+                method = 'Bounded',
+                bounds = (x_i_sorted[1], x_i_sorted[-1]))
+        assert result.success
+        value = result.x
+        impurity = result.fun
         if impurity < best_impurity:
             best_feature, best_value, best_impurity = feature, value, impurity
     return best_feature, best_value, best_impurity
