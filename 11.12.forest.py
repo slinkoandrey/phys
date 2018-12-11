@@ -63,19 +63,37 @@ def predict(tree, x):
     return y
 
 def main():
-    #y = 2 * x[0] +1 
-    plt.figure(figsize=(10,10))
-    n = 20
-    x = np.random.normal(0, 1, size = (n,2)) 
-    y = 2 * x[:, 0] + 1
+#    #y = 2 * x[0] +1 
+#    plt.figure(figsize=(5,5))
+#    n = 500
+#    x = np.random.normal(0, 1, size = (n,2)) 
+#    y_true = 2 * x[:, 0] + 1
+#    y = y_true# + np.random.normal(0, 0.1, n) 
+#    plt.plot(y,y, 'o')
+#    tree = build_tree(x, y)
+#    x_test = np.random.normal(0, 1, size = (n,2)) 
+#    y_test = 2 * x_test[:, 0] + 1
+#    y_pred = predict(tree, x_test)
+#    plt.plot(y_test, y_pred, 'v')
+#    print(np.std(y_test-y_pred))
+#    plt.plot(plt.xlim(), plt.xlim(), 'k', lw =0.5)
+    #y = 1 + 2 * x[0] ** 2 + 3 * x[1] ** 2
+    plt.figure(figsize=(5,5))
+    plt.xscale('log')
+    plt.yscale('log')
+    n = 1000
+    rs = np.random.RandomState(1)
+    x = rs.normal(0, 1, size = (n,2)) 
+    y_true = 1 + 2 * x[:, 0] ** 2 + 3 * x[:, 1] ** 2
+    y = y_true + np.random.normal(0, 0.5, n) 
     plt.plot(y,y, 'o')
-    tree = build_tree(x, y, 2)
-    x_test = np.random.normal(0, 1, size = (n,2)) 
-    y_test = 2 * x_test[:, 0] + 1
+    tree = build_tree(x, y)
+    x_test = rs.normal(0, 1, size = (n,2)) 
+    y_test = 1 + 2 * x_test[:, 0] ** 2 + 3 * x_test[:, 1] ** 2
     y_pred = predict(tree, x_test)
     plt.plot(y_test, y_pred, 'v')
+    print(np.std(y_test-y_pred))
     plt.plot(plt.xlim(), plt.xlim(), 'k', lw =0.5)
-   
 
 if __name__ == '__main__':
     main()
